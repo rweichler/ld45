@@ -17,4 +17,5 @@ start with no pieces
 start with black (rgb = 0, 0, 0), collect colors until you turn white (rgb = 1, 1, 1)
 - use simple shapes
 - rhythm game???
-- collecting colors gives powers
+- puzzle: collecting colors lets you color in new paths
+- or bullet hell, collect colors as they appear, give you power ups but lose them if you get hit 
