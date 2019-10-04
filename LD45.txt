@@ -1,0 +1,20 @@
+Start with nothing:
+
+adventure
+start as robot that can only move forward
+gather parts to upgrade to:
+- backward movement (?)
+- jumping/hovering (? probably irrelevant if top-down)
+- laser beams/gun
+- bombs
+- grappling hook
+
+Story: robot revolution!
+
+puzzle:
+start with no pieces
+/**/
+start with black (rgb = 0, 0, 0), collect colors until you turn white (rgb = 1, 1, 1)
+- use simple shapes
+- rhythm game???
+- collecting colors gives powers
