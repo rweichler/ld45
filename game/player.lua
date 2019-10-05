@@ -1,7 +1,7 @@
 Player = {}
 
 Player.speed = 10
-Player.size = 30
+Player.radius = 18
 Player.color = {0, 0, 0}
 
 Player.x = 0
@@ -26,11 +26,14 @@ function Player:update()
         dx = dx + 1
     end
 
-    self.x = self.x + dx * self.speed
-    self.y = self.y + dy * self.speed
+    local velocity = math.abs(dx) + math.abs(dy)
+    local normal = velocity == 0 and 0 or math.sqrt(velocity) / velocity
+
+    self.x = self.x + dx * normal * self.speed
+    self.y = self.y + dy * normal * self.speed
 end
 
 function Player:render()
     love.graphics.setColor(unpack(self.color))
-    love.graphics.rectangle('fill', self.x - self.size/2, self.y - self.size/2, self.size, self.size)
+    love.graphics.circle('fill', self.x, self.y, self.radius)
 end
