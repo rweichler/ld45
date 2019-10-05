@@ -26,8 +26,11 @@ function Player:update()
         dx = dx + 1
     end
 
-    self.x = self.x + dx * self.speed
-    self.y = self.y + dy * self.speed
+    local velocity = math.abs(dx) + math.abs(dy)
+    local normal = velocity == 0 and 0 or math.sqrt(velocity) / velocity
+
+    self.x = self.x + dx * normal * self.speed
+    self.y = self.y + dy * normal * self.speed
 end
 
 function Player:render()
