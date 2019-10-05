@@ -4,6 +4,10 @@ Player.speed = 400
 Player.level = 1
 Player.colors = {
     {0.2, 0.2, 0.2},
+    {0.5, 0.2, 0.2},
+    {0.5, 0.5, 0.2},
+    {0.5, 0.5, 0.5},
+    {1.0, 0.5, 0.5},
 }
 
 Player.body = love.physics.newBody(Physics.world, 0, 0, 'dynamic')

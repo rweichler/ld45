@@ -2,26 +2,24 @@
 by Christine Vaughan and Reed Weichler
 10/4/19]]
 
-local width, height = 0
+local width, height = love.graphics.getDimensions()
 
-Bullets = {} --"class" name
+Hell = {} --"class" name
 
-bullets = {}
 
-local xCoord = 0 --holds x-coordinate
-local yCoord = 0 --holds y-coordinate
+function Hell:reset()
+    bullets = {}
 
-timeToNewBullet = 20 --number of frames before a new bullet is generated
-newBulletTimer = timeToNewBullet
-bulletSpeedScalar = 100 --how fast the bullets move
+    timeToNewBullet = 20 --number of frames before a new bullet is generated
+    newBulletTimer = timeToNewBullet
+    bulletSpeedScalar = 100 --how fast the bullets move
 
---bullet color
-red = 1
-green = 0
-blue = 0
+    self.color = {1, 0, 0}
+end
+Hell:reset()
 
-function Bullets:load(r)
-	Bullets:spawnCoords()
+function Hell:newbullet(r)
+	local xCoord, yCoord = Hell:spawnCoords()
     local bullet = {}
     bullet.x = xCoord
     bullet.y = yCoord
@@ -35,12 +33,11 @@ function Bullets:load(r)
     table.insert(bullets, bullet)
 end
 
-function Bullets:update(dt)
-	width, height = love.graphics.getDimensions( ) --get width and height of window
+function Hell:update(dt)
 	newBulletTimer = newBulletTimer - 1 --decrement newBulletTimer
 	if(newBulletTimer == 0) then --if newBulletTimer goes to 0
 		newBulletTimer = timeToNewBullet --reset newBulletTimer
-		Bullets:load(5) --render the new bullet
+		Hell:newbullet(5) --render the new bullet
 	end
 	for i, v in ipairs(bullets) do
 		bullets[i].x = bullets[i].x + bullets[i].dx * dt --update the bullet's x coordinate
@@ -48,16 +45,18 @@ function Bullets:update(dt)
 	end
 end
 
-function Bullets:render(bulletX, bulletY, bulletR)
+function Hell:render()
 	for i = 1, #bullets do
         local bullet = bullets[i]
 
-		love.graphics.setColor(red, green, blue, 1)
+		love.graphics.setColor(self.color[1], self.color[2], self.color[3], 1)
 		love.graphics.circle("fill", bullet.x + Camera.offx, bullet.y + Camera.offy, bullet.r)
 	end
 end
 
-function Bullets:spawnCoords()
+function Hell:spawnCoords()
+    local xCoord, yCoord
+
 	local first = love.math.random(0,1) --determine if we set x or y based on player location
 	
 	if(first == 0) then --set x based on player location
@@ -77,37 +76,29 @@ function Bullets:spawnCoords()
 		end
 		xCoord = love.math.random(-1, width + 1)
 	end
+
+    return xCoord, yCoord
 end
 
-function Bullets:changeLevel()
+function Hell:changeLevel()
 	if(Player.level == 1) then -- player is black, bullets are red
-		red = 1
-		green = 0
-		blue = 0
+        self.color = {1, 0, 0}
 		timeToNewBullet = 20 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 100 --how fast the bullets move
 	elseif(Player.level == 2) then -- player is red, bullets are green
-		red = 0
-		green = 1
-		blue = 0
+        self.color = {0, 1, 0}
 		timeToNewBullet = 18 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 125 --how fast the bullets move
 	elseif(Player.level == 3) then -- player is green, bullets are blue
-		red = 0
-		green = 0
-		blue = 1
+        self.color = {0, 0, 1}
 		timeToNewBullet = 16 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 150 --how fast the bullets move
 	elseif(Player.level == 4) then -- player is blue, bullets are white
-		red = 1
-		green = 1
-		blue = 1
+        self.color = {1, 1, 1}
 		timeToNewBullet = 14 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 175 --how fast the bullets move
 	elseif(Player.level == 5) then -- player is white, bullets are black
-		red = 0
-		green = 0
-		blue = 0
+        self.color = {0, 0, 0}
 		timeToNewBullet = 12 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 200 --how fast the bullets move
 	end

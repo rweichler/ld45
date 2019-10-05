@@ -6,7 +6,7 @@ require 'input'
 require 'camera'
 require 'physics'
 require 'player'
-require 'bullets'
+require 'hell'
 require 'console'
 require 'mainmenu'
 
@@ -20,7 +20,7 @@ function love.update(dt)
         return
     end
 
-    Bullets:update(dt)
+    Hell:update(dt)
     Player:update(dt)
     Physics:update(dt)
     Camera:update(dt)
@@ -41,7 +41,7 @@ function love.draw()
         MainMenu:render()
     else
         Player:render()
-        Bullets:render(bulletX, bulletY, bulletR)
+        Hell:render()
     end
     Console:render()
 end
