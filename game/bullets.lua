@@ -60,6 +60,9 @@ function Bullets:spawnCoords()
 	change = love.math.random(0,1) --determine if we configure x or y first
 	xCoord = love.math.random(-1, width + 1)
 	yCoord = love.math.random(-1, height + 1)
-	if(change == 0) then --configure x first
+	if(change == 0) then --configure based on x first
 		if(xCoord > -1 and xCoord < width + 1) then
-			yCoord
+			yCoord = love.math.random(0,1)
+			if(yCoord == 0) then yCoord = 1 elseif(yCoord == 1) then yCoord = height + 1 end
+		end
+	elseif(change == 1
