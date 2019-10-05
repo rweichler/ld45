@@ -2,7 +2,6 @@
 by Christine Vaughan and Reed Weichler
 10/4/19]]
 
-
 love.graphics.setDefaultFilter('nearest', 'nearest')
 
 require 'awesome'
@@ -14,7 +13,50 @@ require 'hell'
 require 'console'
 require 'mainmenu'
 require 'powerup'
+require 'collision'
 
+function LevelDown()
+
+    Player.level = Player.level - 1
+    if Player.level == 0 then
+        GameOver()
+    else
+        Powerup:changeLevel()
+        Hell:changeLevel()
+    end
+end
+
+function LevelUp()
+    Player.level = Player.level + 1
+    if Player.level == 5 then
+        YouWin()
+    else
+        Powerup:changeLevel()
+        Hell:changeLevel()
+    end
+end
+
+function YouWin()
+    MainMenu.on = true
+    MainMenu.win = true
+    MainMenu.lose = false
+end
+
+function GameOver()
+    MainMenu.on = true
+    MainMenu.win = false
+    MainMenu.lose = true
+end
+
+function ResetWorld()
+    Player.level = 1
+    Player.x = 0
+    Player.y = 0
+    Camera.x = 0
+    Camera.y = 0
+    Hell:reset()
+    Powerup:reset()
+end
 
 function love.update(dt)
     DT = dt
@@ -31,19 +73,7 @@ function love.update(dt)
     Physics:update(dt)
     Camera:update(dt)
 
-    for i,bullet in ipairs(bullets) do
-        local dist = math.sqrt(math.pow(bullet.x - Player.x, 2) + math.pow(bullet.y - Player.y, 2))
-        if dist < Player.shape:getRadius() + bullet.r then
-            MainMenu.on = true
-            MainMenu.lose = true
-            Player.x = 0
-            Player.y = 0
-            Camera.x = 0
-            Camera.y = 0
-            Hell:reset()
-			Powerup:reset()
-        end
-    end
+    Collision:update(dt)
 end
 
 function love.draw()

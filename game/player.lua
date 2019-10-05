@@ -37,7 +37,8 @@ function Player:update()
 end
 
 function Player:render()
-    love.graphics.setColor(unpack(self.colors[self.level]))
+    local color = self.colors[self.level]
+    love.graphics.setColor(color)
 
     local width, height = love.graphics:getDimensions()
 
