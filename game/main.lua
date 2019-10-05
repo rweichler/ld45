@@ -24,6 +24,14 @@ function love.update(dt)
     Player:update(dt)
     Physics:update(dt)
     Camera:update(dt)
+
+    for i,bullet in ipairs(bullets) do
+        local dist = math.sqrt(math.pow(bullet.x - Player.x, 2) + math.pow(bullet.y - Player.y, 2))
+        if dist < Player.shape:getRadius() + bullet.r then
+            MainMenu.on = true
+            MainMenu.lose = true
+        end
+    end
 end
 
 function love.draw()
