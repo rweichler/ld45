@@ -6,10 +6,6 @@ local width, height = love.graphics.getDimensions()
 
 Hell = {} --"class" name
 
-local red = 0
-local green = 0
-local blue = 0
-
 function Hell:reset()
     bullets = {}
 
@@ -17,11 +13,9 @@ function Hell:reset()
     newBulletTimer = timeToNewBullet
     bulletSpeedScalar = 100 --how fast the bullets move
 	
-	red = love.math.random(0, 9)/10
-	blue = love.math.random(0, 0)/10
-	green =  = love.math.random(0, 0)/10
-
-    self.color = {red, blue, green}
+	redMax = 5
+	greenMax = 10
+	blueMax = 10
 end
 Hell:reset()
 
@@ -39,9 +33,9 @@ function Hell:newbullet(r)
     bullet.dy = bulletSpeedScalar * sign * love.math.random() --the y component of the direction the bullet will move
 	
 	--color--
-	bullet.red
-	bullet.green
-	bullet.blue
+	bullet.red = love.math.random(0, redMax)/10
+	bullet.green = love.math.random(0, greenMax)/10
+	bullet.blue = love.math.random(0, blueMax)/10
     table.insert(bullets, bullet)
 end
 
@@ -61,7 +55,7 @@ function Hell:render()
 	for i = 1, #bullets do
         local bullet = bullets[i]
 
-		love.graphics.setColor(self.color[1], self.color[2], self.color[3], 1)
+		love.graphics.setColor(bullet.red, bullet.green, bullet.blue, 1)
 		if(Player.level == 5) then
 			love.graphics.circle("line", bullet.x + Camera.offx, bullet.y + Camera.offy, bullet.r)
 		else
@@ -97,24 +91,34 @@ function Hell:spawnCoords()
 end
 
 function Hell:changeLevel()
-	if(Player.level == 1) then -- player is black, bullets are red
-        self.color = {1, 0, 0}
+	if(Player.level == 1) then -- player is black, bullets are not red
+        redMax = 5
+		greenMax = 10
+		blueMax = 10
 		timeToNewBullet = 20 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 100 --how fast the bullets move
-	elseif(Player.level == 2) then -- player is red, bullets are green
-        self.color = {0, 1, 0}
+	elseif(Player.level == 2) then -- player is red, bullets are not green
+        redMax = 10
+		greenMax = 5
+		blueMax = 10
 		timeToNewBullet = 18 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 125 --how fast the bullets move
-	elseif(Player.level == 3) then -- player is green, bullets are blue
-        self.color = {0, 0, 1}
+	elseif(Player.level == 3) then -- player is green, bullets are not blue
+        redMax = 10
+		greenMax = 10
+		blueMax = 5
 		timeToNewBullet = 16 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 150 --how fast the bullets move
-	elseif(Player.level == 4) then -- player is blue, bullets are white
-        self.color = {1, 1, 1}
+	elseif(Player.level == 4) then -- player is blue, bullets are not white
+        redMax = 8
+		greenMax = 8
+		blueMax = 8
 		timeToNewBullet = 14 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 175 --how fast the bullets move
 	elseif(Player.level == 5) then -- player is white, bullets are black
-        self.color = {0, 0, 0}
+        redMax = 0
+		greenMax = 0
+		blueMax = 0
 		timeToNewBullet = 12 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 200 --how fast the bullets move
 	end
