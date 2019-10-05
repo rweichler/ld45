@@ -7,6 +7,8 @@ function Collision:update(dt)
         local dist = math.sqrt(math.pow(bullet.x - Player.x, 2) + math.pow(bullet.y - Player.y, 2))
         if dist < Player.shape:getRadius() + bullet.r then
             LevelDown()
+            table.remove(bullets, i)
+            break
         end
     end
 

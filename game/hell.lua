@@ -24,14 +24,15 @@ function Hell:newbullet(r)
     bullet.x = xCoord
     bullet.y = yCoord
     bullet.r = r
-	local sign = love.math.random(0,1)
-	if(sign == 0) then sign = -1 end --randomly determine x direction of bullet
-    bullet.dx = bulletSpeedScalar * sign * love.math.random() --the x component of the direction the bullet will move
-	sign = love.math.random(0,1)
-	if(sign == 0) then sign = -1 end --randomly determine y direction of bullet
-    bullet.dy = bulletSpeedScalar * sign * love.math.random() --the y component of the direction the bullet will move
-	
-	--color--
+
+    local dx = Player.x - bullet.x
+    local dy = Player.y - bullet.y
+    local mag = math.sqrt(dx*dx + dy*dy)
+
+    bullet.dx = bulletSpeedScalar * dx / mag
+    bullet.dy = bulletSpeedScalar * dy / mag
+
+	-- color
 	bullet.red = love.math.random(0, redMax)/10
 	bullet.green = love.math.random(0, greenMax)/10
 	bullet.blue = love.math.random(0, blueMax)/10
@@ -94,31 +95,31 @@ function Hell:changeLevel()
         redMax = 5
 		greenMax = 10
 		blueMax = 10
-		timeToNewBullet = 20 --number of frames before a new bullet is generated
+		timeToNewBullet = 16 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 100 --how fast the bullets move
 	elseif(Player.level == 2) then -- player is red, bullets are not green
         redMax = 10
 		greenMax = 5
 		blueMax = 10
-		timeToNewBullet = 18 --number of frames before a new bullet is generated
+		timeToNewBullet = 8 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 125 --how fast the bullets move
 	elseif(Player.level == 3) then -- player is green, bullets are not blue
         redMax = 10
 		greenMax = 10
 		blueMax = 5
-		timeToNewBullet = 16 --number of frames before a new bullet is generated
+		timeToNewBullet = 4 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 150 --how fast the bullets move
 	elseif(Player.level == 4) then -- player is blue, bullets are not white
         redMax = 8
 		greenMax = 8
 		blueMax = 8
-		timeToNewBullet = 14 --number of frames before a new bullet is generated
+		timeToNewBullet = 2 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 175 --how fast the bullets move
 	elseif(Player.level == 5) then -- player is white, bullets are black
         redMax = 0
 		greenMax = 0
 		blueMax = 0
-		timeToNewBullet = 12 --number of frames before a new bullet is generated
+		timeToNewBullet = 1 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 200 --how fast the bullets move
 	end
 end
