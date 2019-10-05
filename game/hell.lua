@@ -50,7 +50,11 @@ function Hell:render()
         local bullet = bullets[i]
 
 		love.graphics.setColor(self.color[1], self.color[2], self.color[3], 1)
-		love.graphics.circle("fill", bullet.x + Camera.offx, bullet.y + Camera.offy, bullet.r)
+		if(Player.level == 5) then
+			love.graphics.circle("line", bullet.x + Camera.offx, bullet.y + Camera.offy, bullet.r)
+		else
+			love.graphics.circle("fill", bullet.x + Camera.offx, bullet.y + Camera.offy, bullet.r)
+		end
 	end
 end
 
