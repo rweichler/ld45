@@ -1,7 +1,7 @@
 Player = {}
 
 Player.speed = 10
-Player.size = 30
+Player.radius = 18
 Player.color = {0, 0, 0}
 
 Player.x = 0
@@ -32,5 +32,5 @@ end
 
 function Player:render()
     love.graphics.setColor(unpack(self.color))
-    love.graphics.rectangle('fill', self.x - self.size/2, self.y - self.size/2, self.size, self.size)
+    love.graphics.circle('fill', self.x, self.y, self.radius)
 end
