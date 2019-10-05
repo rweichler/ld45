@@ -103,7 +103,7 @@ end
     love.keypressed = function(key)
         orig(key)
         if not Console.on then
-            if key == '`' then
+            if key == 'escape' then
                 Console.on = true
                 print(Console.on)
             end
@@ -113,7 +113,7 @@ end
             Console.key('\n')
         elseif key == 'backspace' then
             Console.key('\b')
-        elseif key == '`' then
+        elseif key == 'escape' then
             Console.on = false
             love.keyboard.setKeyRepeat(false)
         elseif dirs[key] then
@@ -123,7 +123,7 @@ end
     local orig = love.textinput or function() end
     love.textinput = function(key)
         orig(key)
-        if Console.on and not(key == '`') then
+        if Console.on then
             Console.key(key)
             love.keyboard.setKeyRepeat(true)
         end
@@ -208,7 +208,7 @@ function Console:render()
     local xpad = 3
 
     love.graphics.setColor(0.5, 0.5, 1)
-    love.graphics.print('Lua console! Press ~ to return to the game', xpad, 0)
+    love.graphics.print('Lua console! Press escape to return to the game', xpad, 0)
     for i,v in ipairs(self.backlog) do
         love.graphics.setColor(unpack(v.color))
         love.graphics.print(v.text, xpad, i*Console.lineheight)
