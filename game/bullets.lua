@@ -52,7 +52,8 @@ end
 function Bullets:render(bulletX, bulletY, bulletR)
 	for i = 1, #bulletX do
 		love.graphics.setColor(1, 0, 0, 1)
-		love.graphics.circle("fill", bulletX[i], bulletY[i], bulletR[i])
+
+		love.graphics.circle("fill", bulletX[i] + Camera.offx, bulletY[i] + Camera.offy, bulletR[i])
 	end
 end
 
