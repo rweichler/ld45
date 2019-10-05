@@ -6,7 +6,7 @@ Player.colors = {
     {0.2, 0.2, 0.2},
 }
 
-Player.body = love.physics.newBody(Physics.world, love.graphics.getWidth() / 2, love.graphics.getHeight() / 2, 'dynamic')
+Player.body = love.physics.newBody(Physics.world, 0, 0, 'dynamic')
 Player.shape = love.physics.newCircleShape(18)
 Player.fixture = love.physics.newFixture(Player.body, Player.shape, 1)
 
@@ -34,5 +34,8 @@ end
 
 function Player:render()
     love.graphics.setColor(unpack(self.colors[self.level]))
-    love.graphics.circle('line', self.body:getX(), self.body:getY(), self.shape:getRadius())
+
+    local width, height = love.graphics:getDimensions()
+
+    love.graphics.circle('line', self.body:getX() + Camera.offx, self.body:getY() + Camera.offy, self.shape:getRadius())
 end

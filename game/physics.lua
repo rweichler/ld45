@@ -2,6 +2,7 @@ Physics = {}
 
 Physics.world = love.physics.newWorld(0, 0, true)
 
+--[[
 local function makewall(x, y, width, height)
     local body = love.physics.newBody(Physics.world, x, y)
     local shape = love.physics.newRectangleShape(width, height)
@@ -16,3 +17,4 @@ Physics.walls = {
     {makewall(0, height/2, 1, height)}, -- left
     {makewall(width, height/2, 1, height)}, -- right
 }
+]]

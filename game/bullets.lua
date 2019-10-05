@@ -52,7 +52,8 @@ end
 function Bullets:render(bulletX, bulletY, bulletR)
 	for i = 1, #bulletX do
 		love.graphics.setColor(1, 0, 0, 1)
-		love.graphics.circle("fill", bulletX[i], bulletY[i], bulletR[i])
+
+		love.graphics.circle("fill", bulletX[i] + Camera.offx, bulletY[i] + Camera.offy, bulletR[i])
 	end
 end
 
@@ -65,4 +66,5 @@ function Bullets:spawnCoords()
 			yCoord = love.math.random(0,1)
 			if(yCoord == 0) then yCoord = 1 elseif(yCoord == 1) then yCoord = height + 1 end
 		end
-	elseif(change == 1
+	elseif(change == 1)
+			yCoord

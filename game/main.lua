@@ -2,6 +2,7 @@
 by Christine Vaughan and Reed Weichler
 10/4/19]]
 
+require 'camera'
 require 'physics'
 require 'player'
 require 'bullets'
@@ -15,6 +16,7 @@ function love.update(dt)
     Bullets:update(dt)
     Player:update()
     Physics.world:update(dt)
+    Camera:update()
 end
 
 function love.draw()
