@@ -123,9 +123,10 @@ end
     local orig = love.textinput or function() end
     love.textinput = function(key)
         orig(key)
-        if not Console.on then return end
-        Console.key(key)
-        love.keyboard.setKeyRepeat(true)
+        if Console.on then
+            Console.key(key)
+            love.keyboard.setKeyRepeat(true)
+        end
     end
 
 Console.blinker = {}
