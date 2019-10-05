@@ -4,7 +4,7 @@ by Christine Vaughan and Reed Weichler
 
 require 'physics'
 require 'player'
-require 'world'
+require 'bullets'
 require 'console'
 
 function love.update(dt)
@@ -22,4 +22,5 @@ function love.draw()
 
     love.graphics.setBackgroundColor(0, 0, 0)
     Player:render()
+	Bullets:render(bulletX, bulletY, bulletR)
 end

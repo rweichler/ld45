@@ -13,13 +13,11 @@ bulletR = {} --the radius of each bullet
 bulletDX = {} --the x component of the direction each bullet will move
 bulletDY = {} --the y component of the direction each bullet will move
 
-bx = 0
-by = 0
-br = 2
-
-timeToNewBullet = 20 --number of frames before a new bullet is generated
+timeToNewBullet = 1 --number of frames before a new bullet is generated
 newBulletTimer = timeToNewBullet
 numberOfBullets = 0 --number of bullets on screen
+
+bulletRenderInfo = {0, 0, 1} --holds x, y, and radius to send to render
 
 function Bullets:load(r)
 	table.insert(bulletX, love.math.random(1,width)) --the x-coordinate of the bullet
@@ -27,11 +25,10 @@ function Bullets:load(r)
 	table.insert(bulletR, r) --the radius of the bullet
 	table.insert(bulletDX, 1) --the x component of the direction the bullet will move
 	table.insert(bulletDY, 1) --the y component of the direction the bullet will move
-	Bullets:render()
 end
 
 function Bullets:update(dt)
-	if(Player.Color == {0, 0, 0}) then -- while player is black
+	if(Player.level == 1) then -- while player is black
 		newBulletTimer = newBulletTimer - 1 --decrement newBulletTimer
 		if(newBulletTimer == 0) then --if newBulletTimer goes to 0
 			newBulletTimer = timeToNewBullet --reset newBulletTimer
@@ -44,14 +41,13 @@ function Bullets:update(dt)
 		for i, v in ipairs(bulletY) do
 			v = v + bulletDY[i]	* dt --update the bullet's x coordinate
 		end
-		for i, v in ipairs(bulletX) do
-			Bullets:render(i) --render each bullet
-		end
 	end
 end
 
-function Bullets:render(i)
-	love.graphics.setColor(1, 1, 1, 1)
-	love.graphics.circle("fill", bulletX[i], bulletY[i], bulletR[i])
+function Bullets:render(bulletX, bulletY, bulletR)
+	for i = 1, #bulletX do
+		love.graphics.setColor(1, 0, 0, 1)
+		love.graphics.circle("fill", bulletX[i], bulletY[i], bulletR[i])
+	end
 end
 	
