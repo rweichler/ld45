@@ -17,7 +17,6 @@ function Hell:reset()
 	greenMax = 10
 	blueMax = 10
 end
-Hell:reset()
 
 function Hell:newbullet(r)
 	local xCoord, yCoord = Hell:spawnCoords()

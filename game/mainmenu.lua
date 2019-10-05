@@ -10,6 +10,7 @@ function MainMenu:update(dt)
     if Console.on then return end
 
     if love.keyboard.isDown('space') then
+        ResetWorld()
         MainMenu.on = false
     end
     if love.keyboard.isDown('backspace') then

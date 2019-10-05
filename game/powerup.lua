@@ -16,7 +16,6 @@ function Powerup:reset()
 
     self.sprite = Awesome:new({1, 0, 0})
 end
-Powerup:reset()
 
 function Powerup:render()
     self.sprite:render(powup.x - powup.r + Camera.offx, powup.y - powup.r + Camera.offy, powup.r*2, powup.r*2)
@@ -39,4 +38,6 @@ function Powerup:changeLevel()
 		self.sprite:setColor({0, 0, 0})
 		powup.r = 5
 	end
+	powup.x = love.math.random(-1000, 1000) --holds x-coordinate
+	powup.y = love.math.random(-1000, 1000) --holds y-coordinate
 end
