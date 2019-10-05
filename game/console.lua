@@ -201,10 +201,11 @@ end
 function Console:render()
     if not Console.on then return end
 
+    love.graphics.setBackgroundColor(0, 0, 0)
+
     love.graphics.setFont(self.font)
     local xpad = 3
 
-    print('wat')
     love.graphics.setColor(0.5, 0.5, 1)
     love.graphics.print('Lua console! Press ESC to return to the game', xpad, 0)
     for i,v in ipairs(self.backlog) do
