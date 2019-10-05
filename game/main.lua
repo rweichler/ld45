@@ -10,16 +10,14 @@ require 'console'
 function love.update(dt)
     DT = dt
 
-    Player:update()
-    Physics.world:update(dt)
+    if not Console.on then
+        Player:update()
+        Physics.world:update(dt)
+    end
 end
 
 function love.draw()
-    if Console.on then
-        Console:render()
-        return
-    end
-
     love.graphics.setBackgroundColor(0, 0, 0)
     Player:render()
+    Console:render()
 end
