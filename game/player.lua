@@ -13,16 +13,16 @@ Player.fixture = love.physics.newFixture(Player.body, Player.shape, 1)
 function Player:update()
     local dx = 0
     local dy = 0
-    if love.keyboard.isDown('w') then
+    if love.keyboard.isDown(Input.up) then
         dy = dy - 1
     end
-    if love.keyboard.isDown('a') then
+    if love.keyboard.isDown(Input.left) then
         dx = dx - 1
     end
-    if love.keyboard.isDown('s') then
+    if love.keyboard.isDown(Input.down) then
         dy = dy + 1
     end
-    if love.keyboard.isDown('d') then
+    if love.keyboard.isDown(Input.right) then
         dx = dx + 1
     end
 

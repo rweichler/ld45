@@ -2,6 +2,7 @@
 by Christine Vaughan and Reed Weichler
 10/4/19]]
 
+require 'input'
 require 'camera'
 require 'physics'
 require 'player'
