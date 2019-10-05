@@ -64,7 +64,6 @@ function Console.key(key)
             end
             table.insert(self.backlog, {text = self.input, color = {1, 1, 1}})
             if not success then
-                print(result)
                 -- remove that dumb [string "what you just typed']:1: part at the beginning
                 if string.sub(result, 1, #'[string "')  == '[string "' then
                     local add = #'[string ""]:' + 1

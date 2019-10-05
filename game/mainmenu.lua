@@ -12,6 +12,9 @@ function MainMenu:update(dt)
     if love.keyboard.isDown('space') then
         MainMenu.on = false
     end
+    if love.keyboard.isDown('backspace') then
+        love.event.quit(0)
+    end
 end
 
 function MainMenu:render()
@@ -30,4 +33,6 @@ function MainMenu:render()
     end
     love.graphics.setColor(0.8, 1, 1)
     love.graphics.print('Press space to START WOO', 20, 90)
+    love.graphics.setColor(1, 0.8, 0.8)
+    love.graphics.print('Press backspace to quit to desktop', 20, 120)
 end
