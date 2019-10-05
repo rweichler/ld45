@@ -10,10 +10,11 @@ require 'console'
 function love.update(dt)
     DT = dt
 
-    if not Console.on then
-        Player:update()
-        Physics.world:update(dt)
-    end
+    if Console.on then return end
+
+    Bullets:update(dt)
+    Player:update()
+    Physics.world:update(dt)
 end
 
 function love.draw()
