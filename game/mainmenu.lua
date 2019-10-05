@@ -17,6 +17,8 @@ function MainMenu:update(dt)
     end
 end
 
+MainMenu.awesome = Awesome:new()
+
 function MainMenu:render()
     love.graphics.setFont(MainMenu.font)
     if self.win then
@@ -30,6 +32,8 @@ function MainMenu:render()
         love.graphics.print('Some random game', 20, 20)
         love.graphics.setColor(0.8, 0.8, 1)
         love.graphics.print('WASD to move', 20, 50)
+        MainMenu.awesome:setColor{math.random(), math.random(), math.random()}
+        MainMenu.awesome:render(20, 150, 128, 128)
     end
     love.graphics.setColor(0.8, 1, 1)
     love.graphics.print('Press space to START WOO', 20, 90)
