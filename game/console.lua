@@ -17,8 +17,6 @@ Console.fontwidth = Console.font:getWidth('a')
 --Console.input.background_color = false
 --Console.input:paint()
 
-local button = 'ESC'
-
 local override = {}
 override.help = function(self)
     table.insert(self.history, self.input)
@@ -105,7 +103,7 @@ end
     love.keypressed = function(key)
         orig(key)
         if not Console.on then
-            if key == 'escape' then
+            if key == '`' then
                 Console.on = true
                 print(Console.on)
             end
@@ -115,7 +113,7 @@ end
             Console.key('\n')
         elseif key == 'backspace' then
             Console.key('\b')
-        elseif key == 'escape' then
+        elseif key == '`' then
             Console.on = false
             love.keyboard.setKeyRepeat(false)
         elseif dirs[key] then
@@ -125,7 +123,7 @@ end
     local orig = love.textinput or function() end
     love.textinput = function(key)
         orig(key)
-        if Console.on then
+        if Console.on and not(key == '`') then
             Console.key(key)
             love.keyboard.setKeyRepeat(true)
         end
@@ -210,7 +208,7 @@ function Console:render()
     local xpad = 3
 
     love.graphics.setColor(0.5, 0.5, 1)
-    love.graphics.print('Lua console! Press ESC to return to the game', xpad, 0)
+    love.graphics.print('Lua console! Press ~ to return to the game', xpad, 0)
     for i,v in ipairs(self.backlog) do
         love.graphics.setColor(unpack(v.color))
         love.graphics.print(v.text, xpad, i*Console.lineheight)
