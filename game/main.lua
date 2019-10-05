@@ -46,6 +46,7 @@ function love.draw()
         MainMenu:render()
     else
         Player:render()
+		Powerup:render()
         Hell:render()
     end
     Console:render()

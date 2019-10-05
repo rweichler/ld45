@@ -12,11 +12,11 @@ local xCoord = 0 --holds x-coordinate
 local yCoord = 0 --holds y-coordinate
 
 --powerup color
-red = 1
-green = 0
-blue = 0
+local red = 1
+local green = 0
+local blue = 0
 
-function Powerup:load()
+function Powerup:load(r)
 	Powerup:spawnCoords()
     local powup = {}
     powup.x = xCoord
@@ -24,29 +24,13 @@ function Powerup:load()
     powup.r = r
 end
 
-function Bullets:update(dt)
-	width, height = love.graphics.getDimensions( ) --get width and height of window
-	newBulletTimer = newBulletTimer - 1 --decrement newBulletTimer
-	if(newBulletTimer == 0) then --if newBulletTimer goes to 0
-		newBulletTimer = timeToNewBullet --reset newBulletTimer
-		Bullets:load(5) --render the new bullet
-	end
-	for i, v in ipairs(bullets) do
-		bullets[i].x = bullets[i].x + bullets[i].dx * dt --update the bullet's x coordinate
-		bullets[i].y = bullets[i].y + bullets[i].dy * dt --update the bullet's y coordinate
-	end
+function Powerup:render(powup.x, powup.y, powup.r)
+	Powerup:load(10)
+	love.graphics.setColor(red, green, blue, 1)
+	love.graphics.circle("fill", powup.x + Camera.offx, powup.y + Camera.offy, powup.r)
 end
 
-function Bullets:render(bulletX, bulletY, bulletR)
-	for i = 1, #bullets do
-        local bullet = bullets[i]
-
-		love.graphics.setColor(red, green, blue, 1)
-		love.graphics.circle("fill", bullet.x + Camera.offx, bullet.y + Camera.offy, bullet.r)
-	end
-end
-
-function Bullets:spawnCoords()
+function Powerup:spawnCoords()
 	local first = love.math.random(0,1) --determine if we set x or y based on player location
 	
 	if(first == 0) then --set x based on player location
@@ -68,36 +52,26 @@ function Bullets:spawnCoords()
 	end
 end
 
-function Bullets:changeLevel()
-	if(Player.level == 1) then -- player is black, bullets are red
+function Powerup:changeLevel()
+	if(Player.level == 1) then -- player is black, powerup is red
 		red = 1
 		green = 0
 		blue = 0
-		timeToNewBullet = 20 --number of frames before a new bullet is generated
-		bulletSpeedScalar = 100 --how fast the bullets move
-	elseif(Player.level == 2) then -- player is red, bullets are green
+	elseif(Player.level == 2) then -- player is red, powerup is green
 		red = 0
 		green = 1
 		blue = 0
-		timeToNewBullet = 18 --number of frames before a new bullet is generated
-		bulletSpeedScalar = 125 --how fast the bullets move
-	elseif(Player.level == 3) then -- player is green, bullets are blue
+	elseif(Player.level == 3) then -- player is green, powerup is blue
 		red = 0
 		green = 0
 		blue = 1
-		timeToNewBullet = 16 --number of frames before a new bullet is generated
-		bulletSpeedScalar = 150 --how fast the bullets move
-	elseif(Player.level == 4) then -- player is blue, bullets are white
+	elseif(Player.level == 4) then -- player is blue, powerup is white
 		red = 1
 		green = 1
 		blue = 1
-		timeToNewBullet = 14 --number of frames before a new bullet is generated
-		bulletSpeedScalar = 175 --how fast the bullets move
-	elseif(Player.level == 5) then -- player is white, bullets are black
+	elseif(Player.level == 5) then -- player is white, powerup is black
 		red = 0
 		green = 0
 		blue = 0
-		timeToNewBullet = 12 --number of frames before a new bullet is generated
-		bulletSpeedScalar = 200 --how fast the bullets move
 	end
 end

@@ -16,9 +16,9 @@ newBulletTimer = timeToNewBullet
 bulletSpeedScalar = 100 --how fast the bullets move
 
 --bullet color
-red = 1
-green = 0
-blue = 0
+local red = 1
+local green = 0
+local blue = 0
 
 function Bullets:load(r)
 	Bullets:spawnCoords()
