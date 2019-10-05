@@ -9,10 +9,8 @@ MainMenu.lose = false
 function MainMenu:update(dt)
     if Console.on then return end
 
-    for k,v in pairs(Input) do
-        if love.keyboard.isDown(v) then
-            MainMenu.on = false
-        end
+    if love.keyboard.isDown('space') then
+        MainMenu.on = false
     end
 end
 
@@ -31,5 +29,5 @@ function MainMenu:render()
         love.graphics.print('WASD to move', 20, 50)
     end
     love.graphics.setColor(0.8, 1, 1)
-    love.graphics.print('Press WASD to START WOO', 20, 90)
+    love.graphics.print('Press space to START WOO', 20, 90)
 end

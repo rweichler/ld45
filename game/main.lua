@@ -30,6 +30,11 @@ function love.update(dt)
         if dist < Player.shape:getRadius() + bullet.r then
             MainMenu.on = true
             MainMenu.lose = true
+            Player.x = 0
+            Player.y = 0
+            Camera.x = 0
+            Camera.y = 0
+            Hell:reset()
         end
     end
 end
