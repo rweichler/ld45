@@ -37,5 +37,22 @@ function Player:render()
 
     local width, height = love.graphics:getDimensions()
 
-    love.graphics.circle('line', self.body:getX() + Camera.offx, self.body:getY() + Camera.offy, self.shape:getRadius())
+    love.graphics.circle('line', self.x + Camera.offx, self.y + Camera.offy, self.shape:getRadius())
+end
+
+-- metatable voodoo
+
+local fields = {}
+setmetatable(Player, {
+    __index = function(t, k)
+        return fields[k] and fields[k]()
+    end
+})
+
+fields.x = function()
+    return Player.body:getX()
+end
+
+fields.y = function()
+    return Player.body:getY()
 end
