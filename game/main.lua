@@ -4,3 +4,7 @@ by Christine Vaughan and Reed Weichler
 
 require 'controls'
 require 'world'
+
+function love.draw()
+	love.graphics.setBackgroundColor(1, 1, 1, 1)
+end
