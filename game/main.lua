@@ -13,7 +13,7 @@ end
 
 function love.update(dt)
     DT = dt
-
+	Bullets:update(dt)
     Player:update()
 end
 
