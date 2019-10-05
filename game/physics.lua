@@ -2,6 +2,10 @@ Physics = {}
 
 Physics.world = love.physics.newWorld(0, 0, true)
 
+function Physics:update(dt)
+    self.world:update(dt)
+end
+
 --[[
 local function makewall(x, y, width, height)
     local body = love.physics.newBody(Physics.world, x, y)
