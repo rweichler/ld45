@@ -15,8 +15,6 @@ timeToNewBullet = 20 --number of frames before a new bullet is generated
 newBulletTimer = timeToNewBullet
 bulletSpeedScalar = 100 --how fast the bullets move
 
-bulletRenderInfo = {0, 0, 1} --holds x, y, and radius to send to render
-
 function Bullets:load(r)
 	Bullets:spawnCoords()
     local bullet = {}
@@ -34,16 +32,14 @@ end
 
 function Bullets:update(dt)
 	width, height = love.graphics.getDimensions( ) --get width and height of window
-	if(Player.level == 1) then -- while player is black
-		newBulletTimer = newBulletTimer - 1 --decrement newBulletTimer
-		if(newBulletTimer == 0) then --if newBulletTimer goes to 0
-			newBulletTimer = timeToNewBullet --reset newBulletTimer
-			Bullets:load(5) --render the new bullet
-		end
-		for i, v in ipairs(bullets) do
-			bullets[i].x = bullets[i].x + bullets[i].dx * dt --update the bullet's x coordinate
-			bullets[i].y = bullets[i].y + bullets[i].dy * dt --update the bullet's y coordinate
-		end
+	newBulletTimer = newBulletTimer - 1 --decrement newBulletTimer
+	if(newBulletTimer == 0) then --if newBulletTimer goes to 0
+		newBulletTimer = timeToNewBullet --reset newBulletTimer
+		Bullets:load(5) --render the new bullet
+	end
+	for i, v in ipairs(bullets) do
+		bullets[i].x = bullets[i].x + bullets[i].dx * dt --update the bullet's x coordinate
+		bullets[i].y = bullets[i].y + bullets[i].dy * dt --update the bullet's y coordinate
 	end
 end
 
@@ -51,27 +47,10 @@ function Bullets:render(bulletX, bulletY, bulletR)
 	for i = 1, #bullets do
         local bullet = bullets[i]
 
-		love.graphics.setColor(1, 0, 0, 1)
+		love.graphics.setColor(0, 0, 0, 1)
 		love.graphics.circle("fill", bullet.x + Camera.offx, bullet.y + Camera.offy, bullet.r)
 	end
 end
-
---[[function Bullets:spawnCoords()
-	local change = love.math.random(0,1) --determine if we configure x or y first
-	xCoord = love.math.random(-1, width + 1)
-	yCoord = love.math.random(-1, height + 1)
-	if(change == 0) then --configure based on x first
-		if(xCoord > -1 and xCoord < width + 1) then
-			yCoord = love.math.random(0,1)
-			if(yCoord == 0) then yCoord = 1 elseif(yCoord == 1) then yCoord = height + 1 end
-		end
-	elseif(change == 1) then
-		if(yCoord > -1 and yCoord < height + 1) then
-			yCoord = love.math.random(0,1)
-			if(xCoord == 0) then xCoord = 1 elseif(xCoord == 1) then xCoord = width + 1 end
-		end
-	end
-end]]
 
 function Bullets:spawnCoords()
 	local first = love.math.random(0,1) --determine if we set x or y based on player location
