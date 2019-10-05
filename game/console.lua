@@ -2,6 +2,8 @@ Console = {}
 
 Console.on = false
 
+Console.height = love.graphics:getHeight()
+
 Console.lineheight = 16
 Console.history = {}
 Console.backlog = {}
@@ -81,7 +83,7 @@ function Console.key(key)
                 table.insert(self.backlog, {text = tostring(result), color = color})
             end
         end
-        while (#self.backlog + 2) * Console.lineheight > love.graphics.getHeight() do
+        while (#self.backlog + 2) * Console.lineheight > Console.height do
             table.remove(self.backlog, 1)
         end
         self.input = ''
@@ -176,8 +178,8 @@ end
 
 function Console:right()
     self.blinker.pos = self.blinker.pos + 1
-    if self.blinker.pos > #self.input.text then
-        self.blinker.pos = #self.input.text
+    if self.blinker.pos > #self.input then
+        self.blinker.pos = #self.input
     end
     self.blinker:reset()
 end
@@ -190,19 +192,19 @@ function Console:up()
         end
     elseif #self.history > 0 then
         self.history_idx = #self.history
-        self.cached_command = self.input.text
+        self.cached_command = self.input
     end
     if self.history_idx then
-        self.input.text = self.history[self.history_idx]
-        self.blinker.pos = #self.input.text
+        self.input = self.history[self.history_idx]
+        self.blinker.pos = #self.input
     end
-    self.input:paint()
 end
 
 function Console:render()
     if not Console.on then return end
 
-    love.graphics.setBackgroundColor(0, 0, 0)
+    love.graphics.setColor(0, 0, 0, 0.7)
+    love.graphics.rectangle('fill', 0, 0, love.graphics:getWidth(), Console.height)
 
     love.graphics.setFont(self.font)
     local xpad = 3
