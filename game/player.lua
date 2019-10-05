@@ -49,14 +49,25 @@ end
 local fields = {}
 setmetatable(Player, {
     __index = function(t, k)
-        return fields[k] and fields[k]()
+        return fields[k] and fields[k].get and fields[k].get()
+    end,
+    __newindex = function(t, k, v)
+        return fields[k] and fields[k].set and fields[k].set(v)
     end
 })
 
-fields.x = function()
+fields.x = {}
+fields.x.get = function()
     return Player.body:getX()
 end
+fields.x.set = function(v)
+    Player.body:setX(v)
+end
 
-fields.y = function()
+fields.y = {}
+fields.y.get = function()
     return Player.body:getY()
+end
+fields.y.set = function(v)
+    Player.body:setY(v)
 end
