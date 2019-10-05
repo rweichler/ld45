@@ -2,6 +2,7 @@
 by Christine Vaughan and Reed Weichler
 10/4/19]]
 
+require 'input'
 require 'camera'
 require 'physics'
 require 'player'
@@ -14,9 +15,9 @@ function love.update(dt)
     if Console.on then return end
 
     Bullets:update(dt)
-    Player:update()
-    Physics.world:update(dt)
-    Camera:update()
+    Player:update(dt)
+    Physics:update(dt)
+    Camera:update(dt)
 end
 
 function love.draw()
