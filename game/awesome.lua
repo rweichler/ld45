@@ -33,5 +33,6 @@ end
 function Awesome:render(x, y, w, h)
     w = w or self.width * 2
     h = h or self.height * 2
+    love.graphics.setColor(1, 1, 1, 1)
     love.graphics.draw(self.image, x, y, nil, w/self.width, h/self.height)
 end

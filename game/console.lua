@@ -21,7 +21,7 @@ local override = {}
 override.help = function(self)
     table.insert(self.history, self.input)
     table.insert(self.backlog, {text = self.input, color = {1, 1, 1}})
-    table.insert(self.backlog, {text = 'Type some Lua code. Example: 2+2', color = {1, 1, 1}})
+    table.insert(self.backlog, {text = 'Type some Lua code. Example: 2+2', color = {0.5, 0.5, 1}})
 
     return true
 end

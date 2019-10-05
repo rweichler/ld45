@@ -48,6 +48,7 @@ end
 
 function love.draw()
     love.graphics.setBackgroundColor(0, 0, 0)
+    love.graphics.setColor(1, 1, 1, 1)
 
     if MainMenu.on then
         MainMenu:render()
