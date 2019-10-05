@@ -8,9 +8,9 @@ Bullets = {} --"class" name
 
 --arrays to hold bullet info - bullet n's info will be in bulletX[n], bulletY[n], etc
 bulletX = {} --the x-coordinate of each bullet
-xCoord = 0 --holds x-coordinate
+local xCoord = 0 --holds x-coordinate
 bulletY =  {} --the y-coordinate of each bullet
-yCoord = 0 --holds y-coordinate
+local yCoord = 0 --holds y-coordinate
 bulletR = {} --the radius of each bullet
 bulletDX = {} --the x component of the direction each bullet will move
 bulletDY = {} --the y component of the direction each bullet will move
@@ -27,7 +27,7 @@ function Bullets:load(r)
 	table.insert(bulletX, xCoord) --the x-coordinate of the bullet
 	table.insert(bulletY, yCoord) --the y-coordinate of the bullet
 	table.insert(bulletR, r) --the radius of the bullet
-	sign = love.math.random(0,1)
+	local sign = love.math.random(0,1)
 	if(sign == 0) then sign = -1 end --randomly determine x direction of bullet
 	table.insert(bulletDX, bulletSpeedScalar * sign * love.math.random( )) --the x component of the direction the bullet will move
 	sign = love.math.random(0,1)
@@ -61,7 +61,7 @@ function Bullets:render(bulletX, bulletY, bulletR)
 end
 
 function Bullets:spawnCoords()
-	change = love.math.random(0,1) --determine if we configure x or y first
+	local change = love.math.random(0,1) --determine if we configure x or y first
 	xCoord = love.math.random(-1, width + 1)
 	yCoord = love.math.random(-1, height + 1)
 	if(change == 0) then --configure based on x first
