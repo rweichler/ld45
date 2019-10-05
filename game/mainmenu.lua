@@ -2,6 +2,7 @@ MainMenu = {}
 MainMenu.font = love.graphics.newFont('fonts/hack.ttf', 30)
 MainMenu.on = true
 
+-- set these to determine if we won or LOST
 MainMenu.win = false
 MainMenu.lose = false
 
