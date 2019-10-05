@@ -9,6 +9,7 @@ require 'player'
 require 'hell'
 require 'console'
 require 'mainmenu'
+require 'powerup'
 
 function love.update(dt)
     DT = dt
