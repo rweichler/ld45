@@ -2,6 +2,10 @@
 by Christine Vaughan and Reed Weichler
 10/4/19]]
 
+
+love.graphics.setDefaultFilter('nearest', 'nearest')
+
+require 'awesome'
 require 'input'
 require 'camera'
 require 'physics'
@@ -10,6 +14,7 @@ require 'hell'
 require 'console'
 require 'mainmenu'
 require 'powerup'
+
 
 function love.update(dt)
     DT = dt
