@@ -1,14 +1,14 @@
 Player = {}
 
-Player.speed = 10
-Player.radius = 18
-Player.color = {0, 0, 0}
+Player.speed = 400
+Player.level = 1
+Player.colors = {
+    {0.2, 0.2, 0.2},
+}
 
-Player.x = 0
-Player.y = 0
-
-Player.dx = 0
-Player.dy = 0
+Player.body = love.physics.newBody(Physics.world, love.graphics.getWidth() / 2, love.graphics.getHeight() / 2, 'dynamic')
+Player.shape = love.physics.newCircleShape(18)
+Player.fixture = love.physics.newFixture(Player.body, Player.shape, 1)
 
 function Player:update()
     local dx = 0
@@ -29,11 +29,10 @@ function Player:update()
     local velocity = math.abs(dx) + math.abs(dy)
     local normal = velocity == 0 and 0 or math.sqrt(velocity) / velocity
 
-    self.x = self.x + dx * normal * self.speed
-    self.y = self.y + dy * normal * self.speed
+    self.body:setLinearVelocity(dx*normal*self.speed, dy*normal*self.speed)
 end
 
 function Player:render()
-    love.graphics.setColor(unpack(self.color))
-    love.graphics.circle('fill', self.x, self.y, self.radius)
+    love.graphics.setColor(unpack(self.colors[self.level]))
+    love.graphics.circle('line', self.body:getX(), self.body:getY(), self.shape:getRadius())
 end

@@ -2,19 +2,16 @@
 by Christine Vaughan and Reed Weichler
 10/4/19]]
 
+require 'physics'
 require 'player'
 require 'world'
 require 'console'
-
-function love.load()
-    Player.x = love.graphics.getWidth() / 2
-    Player.y = love.graphics.getHeight() / 2
-end
 
 function love.update(dt)
     DT = dt
 	Bullets:update(dt)
     Player:update()
+    Physics.world:update(dt)
 end
 
 function love.draw()
@@ -23,6 +20,6 @@ function love.draw()
         return
     end
 
-    love.graphics.setBackgroundColor(1, 1, 1, 1)
+    love.graphics.setBackgroundColor(0, 0, 0)
     Player:render()
 end
