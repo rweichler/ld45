@@ -2,7 +2,7 @@
 by Christine Vaughan and Reed Weichler
 10/4/19]]
 
-width, height = love.graphics.getDimensions( ) --get width and height of window
+local width, height = 0
 
 Bullets = {} --"class" name
 
@@ -36,6 +36,7 @@ function Bullets:load(r)
 end
 
 function Bullets:update(dt)
+	width, height = love.graphics.getDimensions( ) --get width and height of window
 	if(Player.level == 1) then -- while player is black
 		newBulletTimer = newBulletTimer - 1 --decrement newBulletTimer
 		if(newBulletTimer == 0) then --if newBulletTimer goes to 0
@@ -60,7 +61,7 @@ function Bullets:render(bulletX, bulletY, bulletR)
 	end
 end
 
-function Bullets:spawnCoords()
+--[[function Bullets:spawnCoords()
 	local change = love.math.random(0,1) --determine if we configure x or y first
 	xCoord = love.math.random(-1, width + 1)
 	yCoord = love.math.random(-1, height + 1)
@@ -75,26 +76,26 @@ function Bullets:spawnCoords()
 			if(xCoord == 0) then xCoord = 1 elseif(xCoord == 1) then xCoord = width + 1 end
 		end
 	end
-end
+end]]
 
---[[function Bullets:spawnCoords()
+function Bullets:spawnCoords()
 	local first = love.math.random(0,1) --determine if we set x or y based on player location
 	
 	if(first == 0) then --set x based on player location
 		local sign = love.math.random(0,1) --determine if x is negative or positive
 		if(sign == 0) then -- x is negative
-			xCoord = Player.x - (width/2) - 1
+			xCoord = Camera.x - (width/2) - 1
 		elseif(sign == 1) then -- x is positive
-			xCoord = Player.x + (width/2) + 1
+			xCoord = Camera.x + (width/2) + 1
 		end
 		yCoord = love.math.random(-1, height + 1)
 	elseif(first == 1) then --set y based on player location
 		local sign = love.math.random(0,1) --determine if y is negative or positive
 		if(sign == 0) then -- y is negative
-			yCoord = Player.y - (height/2) - 1
+			yCoord = Camera.y - (height/2) - 1
 		elseif(sign == 1) then -- y is positive
-			yCoord = Player.y + (height/2) + 1
+			yCoord = Camera.y + (height/2) + 1
 		end
 		xCoord = love.math.random(-1, width + 1)
 	end
-end]]
+end
