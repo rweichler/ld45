@@ -8,7 +8,9 @@ Bullets = {} --"class" name
 
 --arrays to hold bullet info - bullet n's info will be in bulletX[n], bulletY[n], etc
 bulletX = {} --the x-coordinate of each bullet
+xCoord = 0 --holds x-coordinate
 bulletY =  {} --the y-coordinate of each bullet
+yCoord = 0 --holds y-coordinate
 bulletR = {} --the radius of each bullet
 bulletDX = {} --the x component of the direction each bullet will move
 bulletDY = {} --the y component of the direction each bullet will move
@@ -21,8 +23,9 @@ bulletSpeedScalar = 100 --how fast the bullets move
 bulletRenderInfo = {0, 0, 1} --holds x, y, and radius to send to render
 
 function Bullets:load(r)
-	table.insert(bulletX, love.math.random(1,width)) --the x-coordinate of the bullet
-	table.insert(bulletY, love.math.random(1,height)) --the y-coordinate of the bullet
+	Bullets:spawnCoords()
+	table.insert(bulletX, xCoord) --the x-coordinate of the bullet
+	table.insert(bulletY, yCoord) --the y-coordinate of the bullet
 	table.insert(bulletR, r) --the radius of the bullet
 	sign = love.math.random(0,1)
 	if(sign == 0) then sign = -1 end --randomly determine x direction of bullet
@@ -66,5 +69,10 @@ function Bullets:spawnCoords()
 			yCoord = love.math.random(0,1)
 			if(yCoord == 0) then yCoord = 1 elseif(yCoord == 1) then yCoord = height + 1 end
 		end
-	elseif(change == 1)
-			yCoord
+	elseif(change == 1) then
+		if(yCoord > -1 and yCoord < height + 1) then
+			yCoord = love.math.random(0,1)
+			if(xCoord == 0) then xCoord = 1 elseif(xCoord == 1) then xCoord = width + 1 end
+		end
+	end
+end
