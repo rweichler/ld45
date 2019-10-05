@@ -13,7 +13,7 @@ player.color = black
 function love.update(dt)
 	while(player.color == black) --player is black
 		function love.draw()
-
+			love.graphics.circle("fill", bullet.x, bullet.y, bullet.radius)
 		end
 
 function bulletMove(direction)
