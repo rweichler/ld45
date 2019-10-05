@@ -4,10 +4,10 @@ Player.speed = 400
 Player.level = 1
 Player.colors = {
     {0.2, 0.2, 0.2},
-    {0.5, 0.2, 0.2},
-    {0.5, 0.5, 0.2},
-    {0.5, 0.5, 0.5},
-    {1.0, 0.5, 0.5},
+    {1.0, 0.0, 0.0},
+    {0.0, 1.0, 0.0},
+    {0.0, 0.0, 1.0},
+    {1.0, 1.0, 1.0},
 }
 
 Player.body = love.physics.newBody(Physics.world, 0, 0, 'dynamic')
@@ -41,7 +41,7 @@ function Player:render()
 
     local width, height = love.graphics:getDimensions()
 
-    love.graphics.circle('line', self.x + Camera.offx, self.y + Camera.offy, self.shape:getRadius())
+    love.graphics.circle(self.level == 1 and 'line' or 'fill', self.x + Camera.offx, self.y + Camera.offy, self.shape:getRadius())
 end
 
 -- metatable voodoo
