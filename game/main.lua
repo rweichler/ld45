@@ -3,6 +3,7 @@ by Christine Vaughan and Reed Weichler
 10/4/19]]
 
 love.graphics.setDefaultFilter('nearest', 'nearest')
+love.mouse.setVisible(false)
 
 require 'awesome'
 require 'input'
