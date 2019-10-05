@@ -14,23 +14,27 @@ bullet.directionY = love.math.random()
 timeToNewBullet = 5
 numberOfBullets = 0
 
-playerColor = black
-
 function love.update(dt)
-	if(playerColor == black) -- while player is black
+	if(Player.Color == (0, 0, 0)) -- while player is black
 		timeToNewBullet = timeToNewBullet - 1
 		if(timeToNewBullet == 0)
 			timeToNewBullet = 5
 			function love.draw()
 				love.graphics.circle("fill", bullet.x, bullet.y, bullet.radius)
-			end
-			allBullets[numberOfBullets] = bullet
+				end
 			numberOfBullets = numberOfBullets + 1
+			allBullets[numberOfBullets] = bullet
 			bullet.x = love.math.random(0,love.graphics.getMaxImageSize( ))
 			bullet.y = love.math.random(0,love.graphics.getMaxImageSize( ))
 			bullet.directionX = love.math.random()
 			bullet.directionY = love.math.random()
-		
+			end
+		for i, v in ipairs(allBullets) do
+			bullet.x = bullet.x + bullet.directionX*dt
+			bullet.y = bullet.y + bullet.directionY*dt
+			end
+		end
+	end
 
 function bulletMove(direction)
 	
