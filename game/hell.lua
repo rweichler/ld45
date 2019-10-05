@@ -6,6 +6,9 @@ local width, height = love.graphics.getDimensions()
 
 Hell = {} --"class" name
 
+local red = 0
+local green = 0
+local blue = 0
 
 function Hell:reset()
     bullets = {}
@@ -13,8 +16,12 @@ function Hell:reset()
     timeToNewBullet = 20 --number of frames before a new bullet is generated
     newBulletTimer = timeToNewBullet
     bulletSpeedScalar = 100 --how fast the bullets move
+	
+	red = love.math.random(0, 9)/10
+	blue = love.math.random(0, 0)/10
+	green =  = love.math.random(0, 0)/10
 
-    self.color = {1, 0, 0}
+    self.color = {red, blue, green}
 end
 Hell:reset()
 
@@ -30,6 +37,11 @@ function Hell:newbullet(r)
 	sign = love.math.random(0,1)
 	if(sign == 0) then sign = -1 end --randomly determine y direction of bullet
     bullet.dy = bulletSpeedScalar * sign * love.math.random() --the y component of the direction the bullet will move
+	
+	--color--
+	bullet.red
+	bullet.green
+	bullet.blue
     table.insert(bullets, bullet)
 end
 
