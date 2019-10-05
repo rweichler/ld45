@@ -8,11 +8,17 @@ require 'physics'
 require 'player'
 require 'bullets'
 require 'console'
+require 'mainmenu'
 
 function love.update(dt)
     DT = dt
 
     if Console.on then return end
+
+    if MainMenu.on then
+        MainMenu:update(dt)
+        return
+    end
 
     Bullets:update(dt)
     Player:update(dt)
@@ -22,7 +28,12 @@ end
 
 function love.draw()
     love.graphics.setBackgroundColor(0, 0, 0)
-    Player:render()
-	Bullets:render(bulletX, bulletY, bulletR)
+
+    if MainMenu.on then
+        MainMenu:render()
+    else
+        Player:render()
+        Bullets:render(bulletX, bulletY, bulletR)
+    end
     Console:render()
 end
