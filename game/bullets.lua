@@ -6,33 +6,30 @@ local width, height = 0
 
 Bullets = {} --"class" name
 
---arrays to hold bullet info - bullet n's info will be in bulletX[n], bulletY[n], etc
-bulletX = {} --the x-coordinate of each bullet
+bullets = {}
+
 local xCoord = 0 --holds x-coordinate
-bulletY =  {} --the y-coordinate of each bullet
 local yCoord = 0 --holds y-coordinate
-bulletR = {} --the radius of each bullet
-bulletDX = {} --the x component of the direction each bullet will move
-bulletDY = {} --the y component of the direction each bullet will move
 
 timeToNewBullet = 20 --number of frames before a new bullet is generated
 newBulletTimer = timeToNewBullet
-numberOfBullets = 0 --number of bullets on screen
 bulletSpeedScalar = 100 --how fast the bullets move
 
 bulletRenderInfo = {0, 0, 1} --holds x, y, and radius to send to render
 
 function Bullets:load(r)
 	Bullets:spawnCoords()
-	table.insert(bulletX, xCoord) --the x-coordinate of the bullet
-	table.insert(bulletY, yCoord) --the y-coordinate of the bullet
-	table.insert(bulletR, r) --the radius of the bullet
+    local bullet = {}
+    bullet.x = xCoord
+    bullet.y = yCoord
+    bullet.r = r
 	local sign = love.math.random(0,1)
 	if(sign == 0) then sign = -1 end --randomly determine x direction of bullet
-	table.insert(bulletDX, bulletSpeedScalar * sign * love.math.random( )) --the x component of the direction the bullet will move
+    bullet.dx = bulletSpeedScalar * sign * love.math.random() --the x component of the direction the bullet will move
 	sign = love.math.random(0,1)
 	if(sign == 0) then sign = -1 end --randomly determine y direction of bullet
-	table.insert(bulletDY, bulletSpeedScalar * sign * love.math.random( )) --the y component of the direction the bullet will move
+    bullet.dy = bulletSpeedScalar * sign * love.math.random() --the y component of the direction the bullet will move
+    table.insert(bullets, bullet)
 end
 
 function Bullets:update(dt)
@@ -42,22 +39,20 @@ function Bullets:update(dt)
 		if(newBulletTimer == 0) then --if newBulletTimer goes to 0
 			newBulletTimer = timeToNewBullet --reset newBulletTimer
 			Bullets:load(5) --render the new bullet
-			numberOfBullets = numberOfBullets + 1 --increment number of bullets
 		end
-		for i, v in ipairs(bulletX) do
-			bulletX[i] = bulletX[i] + bulletDX[i] * dt --update the bullet's x coordinate
-		end
-		for i, v in ipairs(bulletY) do
-			bulletY[i] = bulletY[i] + bulletDY[i] * dt --update the bullet's y coordinate
+		for i, v in ipairs(bullets) do
+			bullets[i].x = bullets[i].x + bullets[i].dx * dt --update the bullet's x coordinate
+			bullets[i].y = bullets[i].y + bullets[i].dy * dt --update the bullet's y coordinate
 		end
 	end
 end
 
 function Bullets:render(bulletX, bulletY, bulletR)
-	for i = 1, #bulletX do
-		love.graphics.setColor(1, 0, 0, 1)
+	for i = 1, #bullets do
+        local bullet = bullets[i]
 
-		love.graphics.circle("fill", bulletX[i] + Camera.offx, bulletY[i] + Camera.offy, bulletR[i])
+		love.graphics.setColor(1, 0, 0, 1)
+		love.graphics.circle("fill", bullet.x + Camera.offx, bullet.y + Camera.offy, bullet.r)
 	end
 end
 
