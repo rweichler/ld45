@@ -76,3 +76,25 @@ function Bullets:spawnCoords()
 		end
 	end
 end
+
+--[[function Bullets:spawnCoords()
+	local first = love.math.random(0,1) --determine if we set x or y based on player location
+	
+	if(first == 0) then --set x based on player location
+		local sign = love.math.random(0,1) --determine if x is negative or positive
+		if(sign == 0) then -- x is negative
+			xCoord = Player.x - (width/2) - 1
+		elseif(sign == 1) then -- x is positive
+			xCoord = Player.x + (width/2) + 1
+		end
+		yCoord = love.math.random(-1, height + 1)
+	elseif(first == 1) then --set y based on player location
+		local sign = love.math.random(0,1) --determine if y is negative or positive
+		if(sign == 0) then -- y is negative
+			yCoord = Player.y - (height/2) - 1
+		elseif(sign == 1) then -- y is positive
+			yCoord = Player.y + (height/2) + 1
+		end
+		xCoord = love.math.random(-1, width + 1)
+	end
+end]]
