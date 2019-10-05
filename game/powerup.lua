@@ -2,19 +2,19 @@
 by Christine Vaughan and Reed Weichler
 10/5/19]]
 
-local width, height = 0
+local width, height = love.graphics.getDimensions()
 
 Powerup = {} --"class" name
 
-powup = {}
+function Powerup:reset()
+    powup = {}
+
+    self.color = {1, 0, 0}
+end
+Powerup:reset()
 
 local xCoord = 0 --holds x-coordinate
 local yCoord = 0 --holds y-coordinate
-
---powerup color
-local red = 1
-local green = 0
-local blue = 0
 
 function Powerup:load(r)
 	Powerup:spawnCoords()

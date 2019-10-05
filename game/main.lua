@@ -35,6 +35,7 @@ function love.update(dt)
             Camera.x = 0
             Camera.y = 0
             Hell:reset()
+			Powerup:reset()
         end
     end
 end
