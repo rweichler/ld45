@@ -97,7 +97,6 @@ function MainMenu:render()
 
     love.graphics.setColor(1, 1, 1)
     love.graphics.circle("line", 700, y - 5, 30)
-    haloRad = haloRad + 1
 	if(expanding) then
 		haloRad = haloRad + 1
 		if(haloRad == 60) then
