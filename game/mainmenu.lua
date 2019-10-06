@@ -1,5 +1,6 @@
 MainMenu = {}
-MainMenu.font = love.graphics.newFont('fonts/hack.ttf', 30)
+MainMenu.bigFont = love.graphics.newFont('fonts/hack.ttf', 30)
+MainMenu.font = love.graphics.newFont('fonts/hack.ttf', 15)
 MainMenu.on = true
 
 -- set these to determine if we won or LOST
@@ -34,22 +35,26 @@ function MainMenu:render()
 		love.graphics.setColor(0.9, 0.7, 0.3)
         love.graphics.print("Your colors look like this:", 20, 190)
         MainMenu.awesome:setColor{math.random(), math.random(), math.random()}
-        MainMenu.awesome:render(550, 140, 128, 128)
+        MainMenu.awesome:render(280, 140, 128, 128)
 		love.graphics.setColor(0.8, 0.8, 1)
         love.graphics.print('Enemies look like this:', 20, 300)
 		love.graphics.setColor{math.random(), math.random(), math.random()}
-		love.graphics.circle("fill", 615, 320, 30)
+		love.graphics.circle("fill", 270, 320, 30)
 		love.graphics.setColor(0.8, 0.8, 1)
         love.graphics.print('WASD to move', 20, 380)
+
 		love.graphics.setColor(0.8, 0.8, 1)
         love.graphics.print('Run into your colors to get them back.', 20, 410)
+        love.graphics.print('Use your metronome halo to find out how close they are.', 20, 425)
+
 		love.graphics.setColor(0.8, 0.8, 1)
-        love.graphics.print('If you hit an enemy, you lose a color.', 20, 440)
+        love.graphics.print('If you hit an enemy, you lose a color.', 20, 470)
 		love.graphics.setColor(0.8, 0.8, 1)
-        love.graphics.print("If you lose all your colors, it's game over.", 20, 470)
+        love.graphics.print("If you lose all your colors, it's game over.", 20, 485)
     end
+    love.graphics.setFont(MainMenu.bigFont)
     love.graphics.setColor(0.8, 1, 1)
-    love.graphics.print('Press space to START WOO', 20, 500)
+    love.graphics.print('Press space to START WOO', 20, 505)
     love.graphics.setColor(1, 0.8, 0.8)
     love.graphics.print('Press backspace to quit to desktop', 20, 530)
 end
