@@ -48,7 +48,7 @@ function MainMenu:render()
         love.graphics.print('YOU LOSE', 20, y)
         y = y + 100
     else
-        local paintRainbow = paintRainbowClosure(20, y)
+        local paintRainbow = paintRainbowClosure((love.graphics.getWidth()/2) - 105, y)
         paintRainbow('r', {1.0, 0.0, 0})
         paintRainbow('a', {1.0, 0.5, 0})
         paintRainbow('i', {1.0, 1.0, 0})
