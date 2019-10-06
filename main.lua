@@ -22,7 +22,7 @@ function LevelDown()
     if Player.level == 0 then
         GameOver()
     else
-        Powerup:changeLevel()
+        Powerup:changeLevel(false)
         Hell:changeLevel()
     end
 end
@@ -32,8 +32,7 @@ function LevelUp()
     if Player.level == 5 then
         YouWin()
     else
-        Powerup:animateLevelUp()
-        Powerup:changeLevel()
+        Powerup:changeLevel(true)
         Hell:changeLevel()
     end
 end
