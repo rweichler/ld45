@@ -30,6 +30,11 @@ override.quit = function()
     love.event.quit(0)
 end
 
+function Console.print(s)
+    local self = Console
+    table.insert(self.backlog, {text = s, color = {1, 1, 0.5}})
+end
+
 function Console.key(key)
     local self = Console
 

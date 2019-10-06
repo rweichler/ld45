@@ -38,6 +38,11 @@ function LevelUp()
 end
 
 function YouWin()
+    powup = nil
+    Player.x = 0
+    Player.y = 0
+    Camera.x = 0
+    Camera.y = 0
     MainMenu.on = true
     MainMenu.win = true
     MainMenu.lose = false
@@ -69,17 +74,21 @@ function love.update(dt)
     end
 
     if MainMenu.on then
+        if MainMenu.win then
+            Player:update(dt)
+            Physics:update(dt)
+            Camera:update(dt)
+        end
         MainMenu:update(dt)
-        return
+    else
+        Hell:update(dt)
+        Player:update(dt)
+        Physics:update(dt)
+        Camera:update(dt)
+        Powerup:update(dt)
+
+        Collision:update(dt)
     end
-
-    Hell:update(dt)
-    Player:update(dt)
-    Physics:update(dt)
-    Camera:update(dt)
-    Powerup:update(dt)
-
-    Collision:update(dt)
 end
 
 function love.draw()
@@ -88,6 +97,9 @@ function love.draw()
 
     if MainMenu.on then
         MainMenu:render()
+        if MainMenu.win then
+            Player:render()
+        end
     else
         Player:render()
 		Powerup:render()

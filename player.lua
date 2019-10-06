@@ -38,9 +38,11 @@ function Player:update(dt)
 
     self.body:setLinearVelocity(dx*normal*self.speed, dy*normal*self.speed)
 
-    local distFromPowerup = math.sqrt(math.pow(Player.x - powup.x, 2) + math.pow(Player.y - powup.y, 2))
-    self.metronomepos = self.metronomepos + self.metronomespeed / distFromPowerup / dt
-    self.metronomepos = self.metronomepos % 2
+    if powup then
+        local distFromPowerup = math.sqrt(math.pow(Player.x - powup.x, 2) + math.pow(Player.y - powup.y, 2))
+        self.metronomepos = self.metronomepos + self.metronomespeed / distFromPowerup / dt
+        self.metronomepos = self.metronomepos % 2
+    end
 end
 
 function Player:render()
@@ -51,17 +53,19 @@ function Player:render()
 
     love.graphics.circle(self.level == 1 and 'line' or 'fill', self.x + Camera.offx, self.y + Camera.offy, self.shape:getRadius())
 
-    local metronomeSize = self.metronomepos
-    if metronomeSize > 1 then
-        metronomeSize = 2 - metronomeSize
-    end
+    if powup then
+        local metronomeSize = self.metronomepos
+        if metronomeSize > 1 then
+            metronomeSize = 2 - metronomeSize
+        end
 
-    local scale = 50
-    love.graphics.setColor(color[1], color[2], color[3], 0.7)
-    love.graphics.circle('line', self.x + Camera.offx, self.y + Camera.offy, self.shape:getRadius() + metronomeSize*scale)
-    love.graphics.setColor(color[1], color[2], color[3], 0.4)
-    love.graphics.circle('line', self.x + Camera.offx, self.y + Camera.offy, self.shape:getRadius() + metronomeSize*scale*1.25)
-    love.graphics.circle('line', self.x + Camera.offx, self.y + Camera.offy, self.shape:getRadius() + metronomeSize*scale/1.25)
+        local scale = 50
+        love.graphics.setColor(color[1], color[2], color[3], 0.7)
+        love.graphics.circle('line', self.x + Camera.offx, self.y + Camera.offy, self.shape:getRadius() + metronomeSize*scale)
+        love.graphics.setColor(color[1], color[2], color[3], 0.4)
+        love.graphics.circle('line', self.x + Camera.offx, self.y + Camera.offy, self.shape:getRadius() + metronomeSize*scale*1.25)
+        love.graphics.circle('line', self.x + Camera.offx, self.y + Camera.offy, self.shape:getRadius() + metronomeSize*scale/1.25)
+    end
 end
 
 -- metatable voodoo
