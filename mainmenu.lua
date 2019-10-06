@@ -47,7 +47,7 @@ function MainMenu:render()
     elseif self.lose then
         love.graphics.setFont(MainMenu.bigFont)
         love.graphics.setColor(1, 0.3, 0.3)
-        love.graphics.print('YOU LOSE', 20, y)
+        love.graphics.print('YOU DIED', 20, y)
         y = y + 100
     else
         local paintRainbow = paintRainbowClosure((love.graphics.getWidth()/2) - 105, y)
@@ -102,9 +102,12 @@ function MainMenu:render()
         y = y + 30
     end
     love.graphics.setFont(MainMenu.bigFont)
-    love.graphics.setColor(0.8, 1, 1)
+    if self.win then
+        love.graphics.setColor(0.2, 0, 0.4)
+    else
+        love.graphics.setColor(0.8, 1, 1)
+    end
     love.graphics.print('Press space to START WOO', 20, y)
     y = y + 30
-    love.graphics.setColor(1, 0.8, 0.8)
     love.graphics.print('Press backspace to quit to desktop', 20, y)
 end

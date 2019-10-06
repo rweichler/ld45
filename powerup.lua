@@ -72,8 +72,8 @@ function Powerup:update(dt)
     end
 end
 
-function Powerup:changeLevel(up)
-    if up then
+function Powerup:changeLevel(levelUp)
+    if levelUp then
         self:animateLevelUp()
     else
         self:animateLevelDown()
