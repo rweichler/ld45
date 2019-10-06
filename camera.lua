@@ -1,7 +1,7 @@
 Camera = {}
 
-Camera.width = love.graphics:getWidth() / 2
-Camera.height = love.graphics:getHeight() / 2
+Camera.width = 250
+Camera.height = 250
 
 Camera.x = 0
 Camera.y = 0
