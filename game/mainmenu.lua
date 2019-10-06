@@ -3,6 +3,8 @@ MainMenu.bigFont = love.graphics.newFont('fonts/hack.ttf', 30)
 MainMenu.font = love.graphics.newFont('fonts/hack.ttf', 15)
 MainMenu.on = true
 
+local haloRad = 30
+
 -- set these to determine if we won or LOST
 MainMenu.win = false
 MainMenu.lose = false
@@ -36,15 +38,21 @@ function MainMenu:render()
         MainMenu.awesome:setColor{math.random(), math.random(), math.random()}
         MainMenu.awesome:render(280, 140, 128, 128)
 		love.graphics.setColor(0.8, 0.8, 1)
-        love.graphics.print('Enemies look like this:', 20, 300)
+        love.graphics.print('Enemies look like this:', 20, 310)
 		love.graphics.setColor{math.random(), math.random(), math.random()}
-		love.graphics.circle("fill", 270, 320, 30)
+		love.graphics.circle("fill", 280, 320, 30)
 		love.graphics.setColor(0.8, 0.8, 1)
         love.graphics.print('WASD to move', 20, 380)
 
 		love.graphics.setColor(1, 0.5, 0)
         love.graphics.print('Run into your colors to get them back.', 20, 410)
         love.graphics.print('Use your metronome halo to find out how close they are.', 20, 425)
+		love.graphics.setColor(1, 1, 1)
+		love.graphics.circle("line", 700, 420, 30)
+		haloRad = haloRad + 1
+		if(haloRad > 60) then
+			haloRad = 30 end
+		love.graphics.circle("line", 700, 420, haloRad)
 
 		love.graphics.setColor(0.5, 0, 1)
         love.graphics.print('If you hit an enemy, you lose a color.', 20, 470)
