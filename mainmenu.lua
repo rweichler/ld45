@@ -9,7 +9,7 @@ local logoWidth = MainMenu.logoFont:getWidth('a')
 MainMenu.hugeFont = love.graphics.newFont('fonts/hack.ttf', 120)
 
 local haloRad = 30
-local expangin = true
+local expanding = true
 
 -- set these to determine if we won or LOST
 MainMenu.win = false
