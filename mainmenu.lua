@@ -38,10 +38,12 @@ function MainMenu:render()
     local y = 20
 
     if self.win then
-        love.graphics.setFont(MainMenu.bigFont)
+		rainbow = love.graphics.newImage("pics/rainbow.png")
+		love.graphics.draw(rainbow, 0, 0, 0, 1.2, 1.2)
+        --[[love.graphics.setFont(MainMenu.bigFont)
         love.graphics.setColor(0.3, 1, 0.3)
         love.graphics.print('YOU WIN', 20, y)
-        y = y + 100
+        y = y + 100]]
     elseif self.lose then
         love.graphics.setFont(MainMenu.bigFont)
         love.graphics.setColor(1, 0.3, 0.3)
