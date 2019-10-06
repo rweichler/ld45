@@ -207,7 +207,7 @@ function Console:render()
     local xpad = 3
 
     love.graphics.setColor(0.5, 0.5, 1)
-    love.graphics.print('Lua console! Press escape to return to the game', xpad, 0)
+    love.graphics.print('Lua console! Press escape to return to the game. Type "quit", then enter, to quit.', xpad, 0)
     for i,v in ipairs(self.backlog) do
         love.graphics.setColor(unpack(v.color))
         love.graphics.print(v.text, xpad, i*Console.lineheight)

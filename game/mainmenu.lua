@@ -14,22 +14,21 @@ function MainMenu:update(dt)
         ResetWorld()
         MainMenu.on = false
     end
-    if love.keyboard.isDown('backspace') then
-        love.event.quit(0)
-    end
 end
 
 MainMenu.awesome = Awesome:new()
 
 function MainMenu:render()
-    love.graphics.setFont(MainMenu.font)
     if self.win then
+        love.graphics.setFont(MainMenu.bigFont)
         love.graphics.setColor(0.3, 1, 0.3)
         love.graphics.print('YOU WIN', 20, 20)
     elseif self.lose then
+        love.graphics.setFont(MainMenu.bigFont)
         love.graphics.setColor(1, 0.3, 0.3)
         love.graphics.print('YOU LOSE', 20, 20)
     else
+        love.graphics.setFont(MainMenu.font)
         love.graphics.setColor(1, 0.8, 1)
         love.graphics.print("Oh no! You've lost all of your colors.\nTry to get them back, but be careful!\nOthers want to stop you from being brighter than they are.", 20, 20)
 		love.graphics.setColor(0.9, 0.7, 0.3)
@@ -56,5 +55,5 @@ function MainMenu:render()
     love.graphics.setColor(0.8, 1, 1)
     love.graphics.print('Press space to START WOO', 20, 505)
     love.graphics.setColor(1, 0.8, 0.8)
-    love.graphics.print('Press backspace to quit to desktop', 20, 530)
+    love.graphics.print('Press backspace to quit to desktop', 20, 535)
 end
