@@ -32,6 +32,7 @@ function LevelUp()
     if Player.level == 5 then
         YouWin()
     else
+        Powerup:animateLevelUp()
         Powerup:changeLevel()
         Hell:changeLevel()
     end
@@ -77,6 +78,7 @@ function love.update(dt)
     Player:update(dt)
     Physics:update(dt)
     Camera:update(dt)
+    Powerup:update(dt)
 
     Collision:update(dt)
 end

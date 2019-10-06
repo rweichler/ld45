@@ -19,6 +19,37 @@ end
 
 function Powerup:render()
     self.sprite:render(powup.x - powup.r + Camera.offx, powup.y - powup.r + Camera.offy, powup.r*2, powup.r*2)
+
+    if self.animation then
+        self.animation.render()
+    end
+end
+
+function Powerup:animateLevelUp()
+    self.animation = {}
+    self.animation.sprite = Awesome:new(self.sprite.color)
+    self.animation.x = powup.x
+    self.animation.y = powup.y
+    self.animation.r = powup.r
+    self.animation.duration = 0.5
+    self.animation.timeLeft = self.animation.duration
+    self.animation.render = function()
+        local a = self.animation
+        local percent = (a.duration - a.timeLeft)/a.duration
+        local r = a.r + percent*math.max(width, height)
+        local x = a.x - r + Camera.offx
+        local y = a.y - r + Camera.offy
+        a.sprite:render(x, y, r*2, r*2, 1 - percent)
+    end
+end
+
+function Powerup:update(dt)
+    if self.animation then
+        self.animation.timeLeft = self.animation.timeLeft - dt
+        if self.animation.timeLeft < 0 then
+            self.animation = nil
+        end
+    end
 end
 
 function Powerup:changeLevel()
