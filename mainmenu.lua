@@ -5,6 +5,7 @@ MainMenu.on = true
 
 MainMenu.logoFont = love.graphics.newFont('fonts/hack.ttf', 40)
 local logoWidth = MainMenu.logoFont:getWidth('a')
+local rainbow = love.graphics.newImage("pics/rainbow.png")
 
 MainMenu.hugeFont = love.graphics.newFont('fonts/hack.ttf', 120)
 
@@ -41,7 +42,6 @@ function MainMenu:render()
     local y = 20
 
     if self.win then
-		rainbow = love.graphics.newImage("pics/rainbow.png")
         local width, height = love.graphics.getWidth(), love.graphics.getHeight()
 		love.graphics.draw(rainbow, -width/2 + Camera.offx, -height/2 + Camera.offy, 0, width/rainbow:getWidth(), height/rainbow:getHeight())
         --[[love.graphics.setFont(MainMenu.bigFont)
