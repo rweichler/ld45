@@ -39,7 +39,7 @@ function MainMenu:render()
 
     if self.win then
 		rainbow = love.graphics.newImage("pics/rainbow.png")
-		love.graphics.draw(rainbow, 0, 0, 0, 1.2, 1.2)
+		love.graphics.draw(rainbow, 0, 0, 0, love.graphics.getWidth()/rainbow:getWidth(), love.graphics.getHeight()/rainbow:getHeight())
         --[[love.graphics.setFont(MainMenu.bigFont)
         love.graphics.setColor(0.3, 1, 0.3)
         love.graphics.print('YOU WIN', 20, y)
