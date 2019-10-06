@@ -113,13 +113,13 @@ function Hell:changeLevel()
         redMax = 8
 		greenMax = 8
 		blueMax = 8
-		timeToNewBullet = 2 --number of frames before a new bullet is generated
+		timeToNewBullet = 3 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 175 --how fast the bullets move
 	elseif(Player.level == 5) then -- player is white, bullets are black
         redMax = 0
 		greenMax = 0
 		blueMax = 0
-		timeToNewBullet = 1 --number of frames before a new bullet is generated
+		timeToNewBullet = 2 --number of frames before a new bullet is generated
 		bulletSpeedScalar = 200 --how fast the bullets move
 	end
 end

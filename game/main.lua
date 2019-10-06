@@ -64,6 +64,10 @@ function love.update(dt)
 
     if Console.on then return end
 
+    if love.keyboard.isDown('backspace') then
+        love.event.quit(0)
+    end
+
     if MainMenu.on then
         MainMenu:update(dt)
         return
