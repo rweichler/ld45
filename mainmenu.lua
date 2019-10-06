@@ -64,7 +64,7 @@ function MainMenu:render()
     paintRainbow('a', {1.0, 0.5, 0})
     paintRainbow('i', {1.0, 1.0, 0})
     paintRainbow('n', {0.0, 1.0, 0})
-    paintRainbow('b', {0.0, 0.0, 1.0})
+    paintRainbow('b', {0.0, 1.0, 1.0})
     paintRainbow('0', {math.random(), math.random(), math.random()})
     paintRainbow('w', {1.0, 0, 1.0})
     y = y + 60
