@@ -9,6 +9,7 @@ local logoWidth = MainMenu.logoFont:getWidth('a')
 MainMenu.hugeFont = love.graphics.newFont('fonts/hack.ttf', 120)
 
 local haloRad = 30
+local expangin = true
 
 -- set these to determine if we won or LOST
 MainMenu.win = false
@@ -97,9 +98,20 @@ function MainMenu:render()
     love.graphics.setColor(1, 1, 1)
     love.graphics.circle("line", 700, y - 5, 30)
     haloRad = haloRad + 1
-    if(haloRad > 60) then
-        haloRad = 30 end
-    love.graphics.circle("line", 700, y - 5, haloRad)
+	if(expanding) then
+		haloRad = haloRad + 1
+		if(haloRad == 60) then
+			expanding = false
+		end
+	elseif(not expanding) then
+		haloRad = haloRad - 1
+		if(haloRad == 30) then
+			expanding = true
+		end
+	end
+	love.graphics.circle("line", 700, y - 5, haloRad)
+	love.graphics.circle("line", 700, y - 5, haloRad * 1.25)
+	love.graphics.circle("line", 700, y - 5, haloRad * 1.5)
 
     y = y + 45
 
