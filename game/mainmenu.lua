@@ -42,13 +42,13 @@ function MainMenu:render()
 		love.graphics.setColor(0.8, 0.8, 1)
         love.graphics.print('WASD to move', 20, 380)
 
-		love.graphics.setColor(0.8, 0.8, 1)
+		love.graphics.setColor(1, 0.5, 0)
         love.graphics.print('Run into your colors to get them back.', 20, 410)
         love.graphics.print('Use your metronome halo to find out how close they are.', 20, 425)
 
-		love.graphics.setColor(0.8, 0.8, 1)
+		love.graphics.setColor(0.5, 0, 1)
         love.graphics.print('If you hit an enemy, you lose a color.', 20, 470)
-		love.graphics.setColor(0.8, 0.8, 1)
+		love.graphics.setColor(0, 1, 0.5)
         love.graphics.print("If you lose all your colors, it's game over.", 20, 485)
     end
     love.graphics.setFont(MainMenu.bigFont)
