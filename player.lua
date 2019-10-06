@@ -20,16 +20,19 @@ Player.metronomespeed = 0.4 -- num pulses per pixel distance per second
 function Player:update(dt)
     local dx = 0
     local dy = 0
-    if love.keyboard.isDown(Input.up) then
+
+    local js = love.joystick.getJoysticks()[1]
+
+    if love.keyboard.isDown(Input.up) or (js and js:isGamepadDown('dpup')) then
         dy = dy - 1
     end
-    if love.keyboard.isDown(Input.left) then
+    if love.keyboard.isDown(Input.left) or (js and js:isGamepadDown('dpleft')) then
         dx = dx - 1
     end
-    if love.keyboard.isDown(Input.down) then
+    if love.keyboard.isDown(Input.down) or (js and js:isGamepadDown('dpdown')) then
         dy = dy + 1
     end
-    if love.keyboard.isDown(Input.right) then
+    if love.keyboard.isDown(Input.right) or (js and js:isGamepadDown('dpright')) then
         dx = dx + 1
     end
 
