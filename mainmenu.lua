@@ -74,7 +74,7 @@ function MainMenu:render()
 
     love.graphics.setFont(MainMenu.smallFont)
     love.graphics.setColor(1, 1, 1)
-    love.graphics.print('By Reed Weichler and Christine Vaughn', titleX, y + 40)
+    love.graphics.print('By Reed Weichler and Christine Vaughan', titleX, y + 40)
 
     y = y + 60
 

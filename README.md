@@ -1,6 +1,6 @@
 ## rainb0w
 
-LD45 jam project by Reed Weichler and Christine Vaughn.
+LD45 jam project by Reed Weichler and Christine Vaughan.
 
 Move around with WASD to capture the Awesome face smileys. The halo around you pulses faster the closer you are.
 
