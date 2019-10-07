@@ -3,6 +3,8 @@ MainMenu.bigFont = love.graphics.newFont('fonts/hack.ttf', 30)
 MainMenu.font = love.graphics.newFont('fonts/hack.ttf', 15)
 MainMenu.on = true
 
+MainMenu.smallFont = love.graphics.newFont('fonts/hack.ttf', 10)
+
 MainMenu.logoFont = love.graphics.newFont('fonts/hack.ttf', 40)
 local logoWidth = MainMenu.logoFont:getWidth('a')
 local rainbow = love.graphics.newImage("pics/rainbow.png")
@@ -60,7 +62,8 @@ function MainMenu:render()
         love.graphics.print(s, love.graphics.getWidth() - w, love.graphics.getHeight() - h)
     end
 
-    local paintRainbow = paintRainbowClosure((love.graphics.getWidth()/2) - 105, y)
+    local titleX = (love.graphics.getWidth()/2) - 105
+    local paintRainbow = paintRainbowClosure(titleX, y)
     paintRainbow('r', {1.0, 0.0, 0})
     paintRainbow('a', {1.0, 0.5, 0})
     paintRainbow('i', {1.0, 1.0, 0})
@@ -68,7 +71,13 @@ function MainMenu:render()
     paintRainbow('b', {0.0, 1.0, 1.0})
     paintRainbow('0', {math.random(), math.random(), math.random()})
     paintRainbow('w', {1.0, 0, 1.0})
+
+    love.graphics.setFont(MainMenu.smallFont)
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.print('By Reed Weichler and Christine Vaughn', titleX, y + 40)
+
     y = y + 60
+
 
     love.graphics.setFont(MainMenu.font)
     love.graphics.setColor(1, 0.8, 1)
